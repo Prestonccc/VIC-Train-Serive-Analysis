@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="#">
+    <title>VIC Train Service Analysis</title>
+</head>
+<body>
+    <script src="map.js"></script>    
+    <div class='outside-container'>
+        <!-- Flex Up Part -->
+        <div class='up-part'>
+            <!-- legend Part -->
+            <div class='legend-container'>
+                <!-- Station Type -->
+                <div id="legend">
+                    <p><b>Station Type</b></p>
+                </div>
+                <!-- Population -->
+                <div id="lga-legend">
+                    <p><b>Population (Adult)</b></p>
+                    <div><span class="legend-key" style="background-color: #723122"></span>1,000,000</div>
+                    <div><span class="legend-key" style="background-color: #8b4225"></span>500,000</div>
+                    <div><span class="legend-key" style="background-color: #a25626"></span>100,000</div>
+                    <div><span class="legend-key" style="background-color: #b86b25"></span>50,000</div>
+                    <div><span class="legend-key" style="background-color: #ca8323"></span>10,000</div>
+                    <div><span class="legend-key" style="background-color: #da9c20"></span>5,000</div>
+                    <div><span class="legend-key" style="background-color: #e6b71e"></span>1,000</div>
+                    <div><span class="legend-key" style="background-color: #eed322"></span>100</div>
+                    <div><span class="legend-key" style="background-color: #f2f12d"></span>0</div>
+                </div>
+                <!-- Back to Initial -->
+                <button id='backButton'>Back to the Initial Position</button>
+            </div>
+            <!-- Map Part -->
+            <div class='map-container'>
+                <div id="map"></div>
+            </div>
+            <!-- Information Board Part -->
+            <div class='info-board'>
+                <div id="title">
+                    <p class='title'>VIC Local Government Area population and Distribution of Train Stations</p>
+                    <img id="vic" src="Victoria_old_LGAs_map_filled.svg">
+                    <img id="cross" src="interlock.png">
+                    <img id="train" src="train.png">
+
+                    <div id="info">
+                        <p>Move your mouse over a point to view the detail of the Local Government Area.</p>
+                    </div>
+                </div>
+                <img id="viclogo" src="Vic.svg">
+            </div>
+        </div>
+        <!-- Flex Down Part -->      
+        <div class='down-part'>
+            <!-- Bar -->
+            <div class='bar-chart'>
+                <canvas id='barchart'></canvas>
+                <script src="bar.js"></script>
+            </div>
+            <!-- Line -->
+            <div class='line-chart'>
+                <div class='line1'><canvas id='linechart1'></canvas></div>
+                <div class='line2'><canvas id='linechart2'></canvas></div>
+                
+                <script src="line.js"></script>
+            </div>
+            <!-- Pie -->
+            <div class='pie-chart'>
+                <p style='color: white;'><b>Entries of Train Stations with Peak VS Non-Peak Hours</b></p>
+                <div class='tableauPlaceholder' id='viz1634556345035' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;St&#47;StationEntriespiechart&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='StationEntriespiechart&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;St&#47;StationEntriespiechart&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1634556345035');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='460px';vizElement.style.maxWidth='850px';vizElement.style.width='100%';vizElement.style.height='520px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='460px';vizElement.style.maxWidth='850px';vizElement.style.width='100%';vizElement.style.height='520px';} else { vizElement.style.width='100%';vizElement.style.height='520px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p>Copyright &copy; 2021 by <b>IV GROUP 100</b> for Unimelb GEOM90007 Assignment 3. All rights reserved.</p>
+        <p>Data Sources: 
+            <a href="https://discover.data.vic.gov.au/dataset/current-lga-population-density-gaming-expenditures-statistics" target="_blank">VIC LGA Audlt Population</a> |
+            <a href="https://data.gov.au/dataset/ds-dga-bdf92691-c6fe-42b9-a0e2-a4cd716fa811/distribution/dist-dga-b8d5d18b-5057-4fef-967d-d947df388b98/details?q=" target="_blank">VIC LGA Polygon</a> |
+            <a href="https://discover.data.vic.gov.au/dataset/train-station-entries-2008-09-to-2011-12-new" target="_blank">Train Station Entries</a> |
+            <a href="https://discover.data.vic.gov.au/dataset/may-2012-melbourne-metro-train-loads-by-service-at-cordon-stations-new" target="_blank">Melbourne Train Loads</a>
+            
+        </p>
+    </footer>
+</body>
+</html>
